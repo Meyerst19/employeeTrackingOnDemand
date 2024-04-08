@@ -1,18 +1,6 @@
-const inquirer = require("inquirer");
-const { Pool } = require("pg");
-const query = require("./db/query.js");
-const prompts = requier("./directions/prompts.js");
-require("dotenv").config();
+const prompts = require("./directions/prompts.js");
 
-const pool = new Pool({
-  user: DB_USER,
-  password: DB_PASSWORD,
-  host: "localhost",
-  database: DB_NAME,
-});
-
-pool.connect();
-
+prompts.welcome();
 // inquirer
 //   .prompt([
 //     {

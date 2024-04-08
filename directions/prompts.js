@@ -1,7 +1,7 @@
 //Class Prompts to create an object with methods for routes the user can follow when navigating through command line inquirer app
 
 const inquirer = require("inquirer");
-const query = require("./db/query.js");
+const companyQuery = require("../db/query.js");
 
 class Prompts {
   //welcome() introduce the application and auto forward to the main()
@@ -17,21 +17,21 @@ class Prompts {
         },
       ])
       .then(function (response) {
-        switch (response.welcomeMessaage) {
+        switch (response.welcomeMessage) {
           case "Departments":
-            this.department();
+            Prompts.prototype.department();
             break;
           case "Roles":
-            this.role();
+            Prompts.prototype.role();
             break;
           case "Employees":
-            this.employee();
+            Prompts.prototype.employee();
             break;
           case "Queries":
-            this.queries();
-          case "Exit":
-            this.process.exit(0);
+            Prompts.prototype.queries();
             break;
+          case "Exit":
+            process.exit(0);
           default:
         }
       });
@@ -49,21 +49,21 @@ class Prompts {
         },
       ])
       .then(function (response) {
-        switch (response.welcomeMessaage) {
+        switch (response.mainMenu) {
           case "Departments":
-            this.department();
+            Prompts.prototype.department();
             break;
           case "Roles":
-            this.role();
+            Prompts.prototype.role();
             break;
           case "Employees":
-            this.employee();
+            Prompts.prototype.employee();
             break;
           case "Queries":
-            this.queries();
-          case "Exit":
-            this.process.exit(0);
+            Prompts.prototype.queries();
             break;
+          case "Exit":
+            process.exit(0);
           default:
         }
       });
@@ -102,21 +102,20 @@ class Prompts {
             companyQuery.utilizedBudget();
             break;
           case "Add a Department":
-            this.addDepartment;
+            Prompts.prototype.addDepartment;
             // companyQuery.addDepartment();
             break;
           case "Update a Department":
-            this.updateDepartment();
+            Prompts.prototype.updateDepartment();
             break;
           case "Delete a Department":
-            this.deleteDepartment();
+            Prompts.prototype.deleteDepartment();
             break;
           case "Return to Main Menu":
-            this.main();
+            Prompts.prototype.main();
             break;
           case "Exit":
-            this.process.exit(0);
-            break;
+            process.exit(0);
           default:
         }
       });
@@ -146,20 +145,19 @@ class Prompts {
             companyQuery.viewRoles();
             break;
           case "Add a Role":
-            this.addRole();
+            Prompts.prototype.addRole();
             break;
           case "Update a Role":
-            this.updateRole();
+            Prompts.prototype.updateRole();
             break;
           case "Delete a Role":
-            this.deleteRole();
+            Prompts.prototype.deleteRole();
             break;
           case "Return to Main Menu":
-            this.main();
+            Prompts.prototype.main();
             break;
           case "Exit":
-            this.process.exit(0);
-            break;
+            process.exit(0);
           default:
         }
       });
@@ -189,32 +187,31 @@ class Prompts {
       .then(function (response) {
         switch (response.employees) {
           case "View all Employees":
-            query.viewEmployees();
+            companyQuery.viewEmployees();
             break;
           case "View Employees by Manager":
-            this.managerEmployees();
+            Prompts.prototype.managerEmployees();
             break;
           case "View Employees by Department":
-            this.departmentEmployees();
+            Prompts.prototype.departmentEmployees();
             break;
           case "Add an Employee":
-            this.addEmployee();
+            Prompts.prototype.addEmployee();
             break;
           case "Update an Employee":
-            this.updateEmployee();
+            Prompts.prototype.updateEmployee();
             break;
           case "Update a Manager":
-            this.updateManager();
+            Prompts.prototype.updateManager();
             break;
           case "Delete an Employee Record":
-            this.deleteEmployee();
+            Prompts.prototype.deleteEmployee();
             break;
           case "Return to Main Menu":
-            this.main();
+            Prompts.prototype.main();
             break;
           case "Exit":
-            this.process.exit(0);
-            break;
+            process.exit(0);
           default:
         }
       });
@@ -250,17 +247,16 @@ class Prompts {
             companyQuery.utilizedBudget();
             break;
           case "View Employees by Department":
-            this.departmentEmployees();
+            Prompts.prototype.departmentEmployees();
             break;
           case "View Employees by Manager":
-            this.managerEmployees();
+            Prompts.prototype.managerEmployees();
             break;
           case "Return to Main Menu":
-            this.main();
+            Prompts.prototype.main();
             break;
           case "Exit":
-            this.process.exit(0);
-            break;
+            process.exit(0);
           default:
         }
       });
