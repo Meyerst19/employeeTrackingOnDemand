@@ -96,13 +96,13 @@ class Prompts {
             companyQuery.viewDepartments();
             break;
           case "View Employees by Department":
-            companyQuery.departmentEmployees();
+            Prompts.prototype.departmentEmployees();
             break;
           case "View Total Utilized Budget by Departments":
             companyQuery.utilizedBudget();
             break;
           case "Add a Department":
-            Prompts.prototype.addDepartment;
+            Prompts.prototype.addDepartment();
             // companyQuery.addDepartment();
             break;
           case "Update a Department":
@@ -230,7 +230,7 @@ class Prompts {
             "View Total Utilized Budget by Departments",
             "View Employees by Department",
             "View Employees by Manager",
-            "Return to Main Memu",
+            "Return to Main Menu",
             "Exit",
           ],
         },
@@ -293,13 +293,13 @@ class Prompts {
           name: "roleDepartmentId",
         },
       ])
-      .then((response) =>
+      .then((response) => {
         companyQuery.addRole(
           response.roleTitle,
           response.roleSalary,
           response.roleDepartmentId
-        )
-      );
+        );
+      });
   }
 
   addEmployee() {
@@ -326,14 +326,14 @@ class Prompts {
           name: "employeeManagerId",
         },
       ])
-      .then((response) =>
+      .then((response) => {
         companyQuery.addEmployee(
           response.employeeFirstName,
           response.employeeLastName,
           response.employeeRoleId,
           response.employeeManagerId
-        )
-      );
+        );
+      });
   }
 
   updateEmployee() {
@@ -357,13 +357,13 @@ class Prompts {
           name: "updatedValue",
         },
       ])
-      .then((response) =>
+      .then((response) => {
         companyQuery.updateEmployee(
           response.updateField,
           response.updateValue,
           response.employeeId
-        )
-      );
+        );
+      });
   }
 
   updateRole() {
@@ -386,13 +386,13 @@ class Prompts {
           name: "updateValue",
         },
       ])
-      .then((response) =>
+      .then((response) => {
         companyQuery.updateRole(
           response.updateField,
           response.updateValue,
           response.roleId
-        )
-      );
+        );
+      });
   }
 
   updateManager() {
@@ -410,9 +410,9 @@ class Prompts {
           name: "managerId",
         },
       ])
-      .then((response) =>
-        companyQuery.updateManager(response.managerId, response.employeeId)
-      );
+      .then((response) => {
+        companyQuery.updateManager(response.managerId, response.employeeId);
+      });
   }
 
   updateDepartment() {
@@ -429,12 +429,12 @@ class Prompts {
           name: "updateValue",
         },
       ])
-      .then((response) =>
+      .then((response) => {
         companyQuery.updateDepartment(
           response.updateValue,
           response.departmentId
-        )
-      );
+        );
+      });
   }
 
   managerEmployees() {
@@ -446,7 +446,9 @@ class Prompts {
           name: "managerId",
         },
       ])
-      .then((response) => companyQuery.managerEmployees(response.managerId));
+      .then((response) => {
+        companyQuery.managerEmployees(response.managerId);
+      });
   }
 
   departmentEmployees() {
@@ -458,9 +460,10 @@ class Prompts {
           name: "employeeDepartmentId",
         },
       ])
-      .then((response) =>
-        companyQuery.departmentEmployees(response.employeeDepartmentId)
-      );
+      .then(function (response) {
+        console.log(response.employeeDepartmentId);
+        companyQuery.departmentEmployees(response.employeeDepartmentId);
+      });
   }
 
   deleteDepartment() {
@@ -472,7 +475,9 @@ class Prompts {
           name: "departmentId",
         },
       ])
-      .then((response) => companyQuery.deleteDepartment(response.departmentId));
+      .then((response) => {
+        companyQuery.deleteDepartment(response.departmentId);
+      });
   }
 
   deleteRole() {
@@ -484,7 +489,9 @@ class Prompts {
           name: "roleId",
         },
       ])
-      .then((response) => companyQuery.deleteRole(response.roleId));
+      .then((response) => {
+        companyQuery.deleteRole(response.roleId);
+      });
   }
 
   deleteEmployee() {
@@ -496,7 +503,31 @@ class Prompts {
           name: "employeeId",
         },
       ])
-      .then((response) => companyQuery.deleteEmployee(response.employeeId));
+      .then((response) => {
+        companyQuery.deleteEmployee(response.employeeId);
+      });
+  }
+
+  next() {
+    inquirer
+      .prompt([
+        {
+          type: "list",
+          message: "Would you like to return to the main menu or exit?",
+          name: "next",
+          choices: ["Return to Main Menu", "Exit"],
+        },
+      ])
+      .then((response) => {
+        switch (response.next) {
+          case "Return to Main Menu":
+            Prompts.prototype.main();
+            break;
+          case "Exit":
+            process.exit(0);
+          default:
+        }
+      });
   }
 }
 
